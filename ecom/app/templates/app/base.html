@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{% static 'app/css/all.min.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/owl.carousel.min.css' %}">
     <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
-
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <title>Dairy Products | {% block title %}{% endblock title %} </title>
 </head>
 <body>
@@ -64,13 +64,13 @@
               </a>
               <ul class="dropdown-menu" aria-labelledby="profileDropdown">
                 <li><a class="dropdown-item" href="{% url 'profile' %}">Profile</a></li>
-                <li><a class="dropdown-item" href="#">Orders</a></li>
+                <li><a class="dropdown-item" href="{% url 'orders' %}">Orders</a></li>
                 <li><a class="dropdown-item" href="{% url 'passwordchange' %}">Change Password</a></li>
                 <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link active text-white" aria-current="page" href="#">Cart</a>
+              <a class="nav-link active text-white" aria-current="page" href="{% url 'showcart' %}">Cart</a>
             </li>
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="#">Wishlist</a>
@@ -90,6 +90,7 @@
       {% block banner_slider %}{% endblock banner_slider %}
       {% block information %}{% endblock information %}
       {% block main-content %}{% endblock main-content %}
+      {% block payment-gateway %}{% endblock payment-gateway %}
 
       <footer class="container-fluid fixed-bottom bg-primary text-center p-2 mt-5">
         Copyright : 2024 | Developed by : Anurag 
