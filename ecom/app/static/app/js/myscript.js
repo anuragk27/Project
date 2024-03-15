@@ -1,26 +1,26 @@
-// $('#slider1, #slider2, #slider3').owlCarousel({
-//     loop: true,
-//     margin: 20,
-//     responsiveClass: true,
-//     responsive: {
-//         0: {
-//             items: 2,
-//             nav: false,
-//             autoplay: true,
-//         },
-//         600: {
-//             items: 4,
-//             nav: true,
-//             autoplay: true,
-//         },
-//         1000: {
-//             items: 6,
-//             nav: true,
-//             loop: true,
-//             autoplay: true,
-//         }
-//     }
-// })
+$('#slider1, #slider2, #slider3').owlCarousel({
+    loop: true,
+    margin: 20,
+    responsiveClass: true,
+    responsive: {
+        0: {
+            items: 2,
+            nav: false,
+            autoplay: true,
+        },
+        600: {
+            items: 4,
+            nav: true,
+            autoplay: true,
+        },
+        1000: {
+            items: 6,
+            nav: true,
+            loop: true,
+            autoplay: true,
+        }
+    }
+})
 
 $('.plus-cart').click(function(){
     var id=$(this).attr("pid").toString();
@@ -76,34 +76,34 @@ $('.remove-cart').click(function(){
 })
 
 
-// $('.plus-wishlist').click(function(){
-//     var id=$(this).attr("pid").toString();
-//     $.ajax({
-//         type:"GET",
-//         url:"/pluswishlist",
-//         data:{
-//             prod_id:id
-//         },
-//         success:function(data){
-//             //alert(data.message)
-//             window.location.href = `http://localhost:8000/product-detail/${id}`
-//         }
-//     })
-// })
+$('.plus-wishlist').click(function(){
+    var id=$(this).attr("pid").toString();
+    $.ajax({
+        type:"GET",
+        url:"/pluswishlist",
+        data:{
+            prod_id:id
+        },
+        success:function(data){
+            //alert(data.message)
+            window.location.href = `http://localhost:8000/product-detail/${id}`
+        }
+    })
+})
 
 
-// $('.minus-wishlist').click(function(){
-//     var id=$(this).attr("pid").toString();
-//     $.ajax({
-//         type:"GET",
-//         url:"/minuswishlist",
-//         data:{
-//             prod_id:id
-//         },
-//         success:function(data){
-//             window.location.href = `http://localhost:8000/product-detail/${id}`
-//         }
-//     })
-// })
+$('.minus-wishlist').click(function(){
+    var id=$(this).attr("pid").toString();
+    $.ajax({
+        type:"GET",
+        url:"/minuswishlist",
+        data:{
+            prod_id:id
+        },
+        success:function(data){
+            window.location.href = `http://localhost:8000/product-detail/${id}`
+        }
+    })
+})
 
 
