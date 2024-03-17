@@ -37,7 +37,7 @@ class Customer(models.Model):
     state = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return self.name 
 
 class Cart(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
@@ -76,3 +76,7 @@ class OrderPlaced(models.Model):
     @property
     def total_cost(self):
         return self.quantity * self.product.discounted_price
+
+class Wishlist(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    product = models.ForeignKey(Product,on_delete=models.CASCADE)

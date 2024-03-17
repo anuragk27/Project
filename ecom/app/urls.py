@@ -1,4 +1,5 @@
 from django.urls import path
+from django.contrib import admin
 from . import views
 from django.conf.urls.static import static
 from django.conf import settings
@@ -30,9 +31,14 @@ urlpatterns = [
     path('paymentdone/',views.payment_done, name='paymentdone'),
     path('orders/',views.orders, name='orders'),
 
+    path('search/',views.search, name='search'), 
+    path('wishlist/',views.show_wishlist, name='showwishlist'), 
+
     path('pluscart/',views.plus_cart),
     path('minuscart/',views.minus_cart),
     path('removecart/',views.remove_cart),
+    path('pluswishlist/',views.plus_wishlist),
+    path('minuswishlist/',views.minus_wishlist),
     
     # Login Authentication
     path('registration/', views.CustomerRegistrationView.as_view(), name='customerregistration'),
@@ -59,3 +65,7 @@ urlpatterns = [
     path('password-reset-complete/', auth_view.PasswordResetCompleteView.as_view(template_name='app/password_reset_complete.html'), name='password_reset_complete'),
 
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+admin.site.site_header="SuperMarket"
+admin.site.site_title="SuperMarket"
+admin.site.site_index_title="Welcome to SuperMarket"
