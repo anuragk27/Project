@@ -1,4 +1,5 @@
 from django.db.models import Count , Q
+from django.http import JsonResponse
 from django.shortcuts import render , redirect
 from django.views import View
 from . models import Product, Customer, Cart, Payment, OrderPlaced, Wishlist
@@ -71,7 +72,7 @@ class CategoryTitle(View):
 class ProductDetail(View):
     def get(self,request,pk):
         product = Product.objects.get(pk=pk)
-        wishlist = Wishlist.objects.filter(Q(product=product)&Q(user=request.user))
+        wishlist = Wishlist.objects.filter(Q(product=product) & Q(user=request.user))
         totalitem = 0
         wishitem = 0 
         if request.user.is_authenticated:
@@ -329,7 +330,7 @@ def plus_wishlist(request):
         prod_id = request.GET['prod_id']
         product = Product.objects.get(id=prod_id)
         user = request.user
-        wishlist(user=user,product=product).save()
+        Wishlist(user=user,product=product).save()
         data={
             'message':'Wishlist Added Successfully ',
         }
@@ -340,7 +341,7 @@ def minus_wishlist(request):
         prod_id = request.GET['prod_id']
         product = Product.objects.get(id=prod_id)
         user = request.user
-        wishlist.objects.filter(user=user,product=product).delete()
+        Wishlist.objects.filter(user=user,product=product).delete()
         data={
             'message':'Wishlist Removed Successfully ',
         }
@@ -354,5 +355,5 @@ def search(request):
     if request.user.is_authenticated:
         totalitem = len(Cart.objects.filter(user=request.user))
         wishitem = len(Wishlist.objects.filter(user=request.user))
-    product = Product.objects.filter(Q(title_icontains=query))
+    product = Product.objects.filter(Q(title__icontains=query)) #double underscore
     return render(request,"app/search.html",locals())
