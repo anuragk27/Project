@@ -235,18 +235,21 @@ class checkout(View):
                 razorpay_payment_status = order_status
             )
             payment.save()
+            # print(payment)
         return render(request,'app/checkout.html',locals())
 
 @login_required
 def payment_done(request):
     order_id = request.GET.get('order_id')
+    print(order_id)
     payment_id = request.GET.get('payment_id')
     cust_id = request.GET.get('cust_id')
+    print(cust_id)
     # print("payment_done : old = ",order_id,"pid = ",payment_id,"cid = ",cust_id)
     user = request.user
     customer = Customer.objects.get(id=cust_id)
     #To update status and payment id
-    payment = Payment.objects.get(id=cust_id)
+    payment = Payment.objects.get(razorpay_order_id=order_id)
     payment.paid = True
     payment.razorpay_payment_id = payment_id
     #To save payment details
@@ -262,9 +265,11 @@ def orders(request):
     totalitem = 0
     wishitem = 0
     if request.user.is_authenticated:
+        # print(f"Authenticated user: {request.user}")
         totalitem = len(Cart.objects.filter(user=request.user))
         wishitem = len(Wishlist.objects.filter(user=request.user))
     order_placed = OrderPlaced.objects.filter(user=request.user)
+    # print("orders",order_placed)
     return render(request, 'app/orders.html',locals())
 
 def plus_cart(request):

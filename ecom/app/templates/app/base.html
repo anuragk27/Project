@@ -17,7 +17,7 @@
 
     <nav class="navbar navbar-expand-lg bg-primary">
         <div class="container-fluid">
-          <a class="navbar-brand  text-white" href="/">SuperMarket</a>
+          <a class="navbar-brand  text-white" href="/"><img src="{% static 'app/images/banner/logo.png' %}" width="40px" alt="logo"> SuperMarket</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -74,7 +74,7 @@
               <a class="nav-link active text-white" aria-current="page" href="{% url 'showcart' %}"> 
               <span class=" badge bg-danger">{% if totalitem > 0 %}
                 {{ totalitem }}
-              {% endif %}</span> Cart</a>
+              {% endif %}</span><img src="{% static 'app/images/banner/cart.png' %}" width="30px" alt="cart"></a>
             </li>
             <li class="nav-item">
               <a class="nav-link active text-white" aria-current="page" href="{% url 'showwishlist' %}">
@@ -110,8 +110,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" ></script>
 
+    <script src="{% static 'app/js/owl.carousel.min.js' %}" ></script>
     <script src="{% static 'app/js/all.min.js' %}" ></script>
     <script src="{% static 'app/js/myscript.js' %}" ></script>
-    <script src="{% static 'app/js/owl.carousel.min.js' %}" ></script>
 </body>
 </html>

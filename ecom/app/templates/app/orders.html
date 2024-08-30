@@ -10,7 +10,7 @@
                 <li class="d-grid" ><a href="{% url 'orders' %}" class="btn btn-primary">Orders</a></li>
             </ul>
         </div>
-
+        {% if order_placed %}
         <div class="col-sm-9 offset-sm-1">
             {% for op in order_placed %}
               <div class="row">
@@ -18,9 +18,9 @@
                     <img src="{{op.product.product_image.url}}" class="img-fluid" height="100" width="100">
                 </div>
                 <div class="col-sm-7">
-                    <p>Product :{{op.product.title}}</p>
-                    <p>Quantity :{{op.quantity}}</p>
-                    <p>Price :{{op.total_cost}}</p>
+                    <p>Product : {{op.product.title}}</p>
+                    <p>Quantity : {{op.quantity}}</p>
+                    <p>Price : {{op.total_cost}}</p>
                 </div>
                 <div class="col-sm-3">
                     <p>Order Status :{{op.status}}</p>
@@ -55,6 +55,9 @@
               </div>
             {% endfor %}
         </div>
+        {% else %}
+          <p>No orders found.</p> <!-- Display a message if no orders are available -->
+        {% endif %}
     </div>
   </div>
 {% endblock main-content %}

@@ -23,17 +23,19 @@ $('#slider1, #slider2, #slider3').owlCarousel({
 })
 
 $('.plus-cart').click(function(){
-    var id=$(this).attr("pid").toString();
-    var eml=this.parentNode.children[2]
+    console.log("Button clicked")
+    var id = $(this).attr("pid").toString();
+    var eml = this.parentNode.children[2]
     console.log(eml) 
     $.ajax({
         type:"GET",
         url:"/pluscart",
         data:{
-            prod_id:id
+            prod_id: id
         },
         success:function(data){
-            eml.innerText=data.quantity 
+            console.log("data = ",data);
+            eml.innerText = data.quantity 
             document.getElementById("amount").innerText=data.amount 
             document.getElementById("totalamount").innerText=data.totalamount
         }
@@ -78,6 +80,7 @@ $('.remove-cart').click(function(){
 
 $('.plus-wishlist').click(function(){
     var id=$(this).attr("pid").toString();
+    console.log(id)
     $.ajax({
         type:"GET",
         url:"/pluswishlist",
